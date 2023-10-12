@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import s from './App.module.scss';
+import {SideBar} from "./components/SideBar/SideBar";
+import {Content} from "./components/Content/Content";
+import {getAuthUserData} from "./bll/auth.reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {getIsAuth} from "./bll/auth.selector";
+import {Header} from "./components/Content/Header/Header";
+import {ToastContainer} from "react-toastify";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App = () => {
+	const dispatch = useDispatch()
+	const isAuth = useSelector(getIsAuth)
+
+
+	useEffect(() => {
+		// @ts-ignore
+		dispatch(getAuthUserData())
+	}, [dispatch])
+
+	return (
+		<div className={isAuth ? '' : s.appWrapper}>
+			{!isAuth
+				? <><SideBar/><Content/></>
+				: <><Header/><Content/></>
+			}
+			<ToastContainer
+				position='bottom-left'
+				autoClose={3000}
+				hideProgressBar={false}
+				closeOnClick={true}
+				pauseOnHover={false}
+				draggable={true}
+				theme={'colored'}
+			/>
+		</div>
+	);
 }
-
-export default App;
