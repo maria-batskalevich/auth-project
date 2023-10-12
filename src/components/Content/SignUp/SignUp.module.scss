@@ -1,0 +1,133 @@
+@import "../../../sass/abstracts/definitions";
+@import "/src/sass/components/auth";
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	transition: background-color 5000s ease-in-out 0s;
+}
+
+.signUpWrapper {
+	.textWrapper h3 {
+		font-size: 22px;
+		font-weight: 500;
+	}
+
+	.textWrapper p {
+		font-size: $mainInputTextSize;
+		margin-bottom: 20px;
+	}
+
+	.formWrapper {
+		display: flex;
+		flex-direction: column;
+
+		.row {
+			@extend %rowFieldPlaceholder;
+
+			.fieldWrapper,
+			.lastNameWrapper,
+			.nationalityWrapper,
+			.emailWrapper,
+			.passwordWrapper,
+			.confirmPasswordWrapper {
+				@extend %inputFieldPlaceholder
+			}
+
+			.selectNationality {
+				width: $inputWidth;
+				border: none;
+				border-bottom: 1px solid $labelTextColor;
+				outline: none;
+				font-weight: 500;
+				font-family: 'Work Sans', sans-serif;
+			}
+
+			.genderFlexWrapper {
+				width: $inputWidth;
+				display: flex;
+				justify-content: flex-start;
+
+				label {
+					font-size: $mainInputTextSize;
+					font-weight: 500;
+					color: $mainTextColor;
+					margin-right: 19px;
+					margin-left: 6px;
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		.footerSignup {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-grow: 1;
+			margin-top: 80px;
+
+			p {
+				font-size: 13px;
+				font-weight: 200;
+			}
+
+			.completeSignupButton {
+				@extend %buttonFieldPlaceholder;
+
+				button:disabled {
+					@extend %buttonDisabledPlaceholder
+				}
+			}
+		}
+	}
+}
+
+label {
+	display: block;
+	font-size: 12px;
+	color: $labelTextColor;
+	margin-bottom: 5px;
+}
+
+
+
+
+
+.registered {
+	margin-top: 178px;
+	margin-left: 43px;
+	margin-bottom: 135px;
+}
+
+.registered p {
+	margin-top: 16px;
+	font-size: 13px;
+	font-weight: 200;
+}
+
+.error {
+	color: red;
+	font-size: 11px;
+	position: absolute;
+}
+
+@media (max-width: 660px) {
+	.textWrapper {
+		text-align: center;
+	}
+	.row {
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 5px;
+	}
+	.footerSignup {
+		flex-direction: column-reverse;
+		margin-top: 25px;
+
+		button {
+			margin-bottom: 15px;
+		}
+
+	}
+}

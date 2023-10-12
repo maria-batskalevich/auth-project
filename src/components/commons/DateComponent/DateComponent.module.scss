@@ -1,0 +1,23 @@
+@import "../../../sass/abstracts/definitions";
+
+.selectDataWrapper {
+	display: flex;
+	justify-content: space-between;
+	width: 235px;
+
+	select {
+		border: none;
+		border-bottom: $labelTextColor 1px solid;
+		height: 23px;
+
+		&:nth-child(1) {
+			width: 56px;
+		}
+		&:nth-child(2) {
+			width: 91px;
+		}
+		&:nth-child(3) {
+			width: 68px;
+		}
+	}
+}

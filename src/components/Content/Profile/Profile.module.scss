@@ -1,0 +1,97 @@
+@import "../../../sass/abstracts/definitions";
+
+.contentCenter {
+	padding: 120px 200px 0;
+	margin: auto;
+	height: 100vh;
+	background-color: $mainProfileBGColor;
+
+	.profileWrapper {
+		background: $whiteTextColor;
+		display: flex;
+		justify-content: space-around;
+		border-radius: 6px;
+		box-shadow: 1px 1px 1px 1px #dadde1;
+		padding: 20px;
+
+		.userWrapper {
+			position: relative;
+			border-radius: 6px;
+			box-shadow: 1px 1px 1px 1px #dadde1;
+			padding: 20px;
+			display: flex;
+			flex-direction: column;
+			margin: 10px 20px;
+			border: #DADDE1 solid 1px;
+			width: 40%;
+
+			.boxHeading {
+				color: $profileBoxMainColor;
+				font-weight: 600;
+				margin-bottom: 5px;
+				padding: 0 20px 15px;
+
+				h4 {
+					position: relative;
+					text-transform: capitalize;
+					width: 100%;
+				}
+			}
+
+			.descWrapper {
+				display: flex;
+				justify-content: space-between;
+				border-bottom: 1px solid #DADDE1;
+				padding-top: 5px;
+				padding-bottom: 3px;
+				margin-left: 20px;
+				margin-right: 20px;
+
+				.desc {
+					font-size: 14px;
+					font-weight: bold;
+					opacity: .55;
+				}
+
+				.descRes {
+					font-size: 14px;
+					color: $profileBoxMainColor;
+
+					.descRes:hover {
+						font-weight: bold;
+					}
+				}
+			}
+		}
+
+		.imageWrapper {
+			width: 125px;
+			height: 125px;
+			border-radius: 50%;
+			border: 3px solid white;
+			overflow: hidden;
+			flex-shrink: 0;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			position: relative;
+
+			.userImage {
+				width: 100%;
+			}
+		}
+	}
+}
+
+
+h4::before {
+	background: $mainDarkBGColor;
+	color: $profileBoxMainColor;
+	content: "";
+	position: absolute;
+	width: 3px;
+	height: 15px;
+	left: 0;
+	top: 10%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}

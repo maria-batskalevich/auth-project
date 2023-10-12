@@ -1,0 +1,21 @@
+@import "../../../sass/abstracts/definitions";
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	padding: 30vh;
+	color: $profileBoxMainColor;
+	.subtitle {
+		font-size: 20vh;
+		font-weight: bold;
+		line-height: 1em;
+		margin-bottom: 5vh;
+		.title {
+			font-size: 5vh;
+		}
+	}
+}
+
+
+

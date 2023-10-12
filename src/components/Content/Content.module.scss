@@ -1,0 +1,17 @@
+@import "../../sass/abstracts/definitions";
+
+.contentWrapper {
+	position: relative;
+	margin: 39px 22px 33px;
+	font-family: 'Work Sans', sans-serif;
+	width: 485px;
+	padding-top: 30px;
+	background-color: $mainAuthBGColor;
+}
+
+.profileWrapper {
+	padding: 120px 100px 0;
+	margin: auto;
+	height: 100vh;
+	background-color: $mainProfileBGColor;
+}

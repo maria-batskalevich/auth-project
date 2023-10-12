@@ -1,0 +1,56 @@
+@import "../../../sass/abstracts/definitions";
+@import "../../../sass/components/auth";
+
+
+.loginWrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 39px 22px 33px;
+	font-family: 'Work Sans', sans-serif;
+	width: 485px;
+	padding-top: 30px;
+	background-color: $mainAuthBGColor;
+
+	.loginHeader {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		h3 {
+			margin-bottom: 50px;
+			margin-top: 10px;
+			text-align: center;
+		}
+
+		.fieldWrapper {
+			@extend %inputFieldPlaceholder
+		}
+
+		.captchaInput {
+			padding-bottom: 50px;
+		}
+	}
+
+	.loginFooter {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: center;
+
+		.completeSignupButton {
+			@extend %buttonFieldPlaceholder;
+
+			button:disabled {
+				@extend %buttonDisabledPlaceholder
+			}
+		}
+
+		.loginFooterRedirect {
+			font-size: 13px;
+			font-weight: 200;
+			margin-top: 20px;
+		}
+	}
+}
