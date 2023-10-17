@@ -16,6 +16,7 @@ export const authAPI = {
 			.then(res => res.data)
 	},
 	login(data: LoginParamsType) {
+		// debugger
 		return instance.post<ResponseType<{ userId: number }>>('auth/login', data)
 	},
 	logout() {

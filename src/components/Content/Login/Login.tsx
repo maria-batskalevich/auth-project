@@ -52,7 +52,9 @@ export const Login = () => {
 		},
 		onSubmit: values => {
 			setIsLoading(true);
+			// debugger
 			dispatch(loginTC(values));
+			// debugger
 			setIsLoading(false);
 		}
 	})
@@ -62,48 +64,48 @@ export const Login = () => {
 	}
 
 	return (
-			<div className={s.loginWrapper}>
-				<form onSubmit={formik.handleSubmit}>
-					<div className={s.loginHeader}>
-						<h3>Sign in</h3>
+		<div className={s.loginWrapper}>
+			<form onSubmit={formik.handleSubmit}>
+				<div className={s.loginHeader}>
+					<h3>Sign in</h3>
+					<CustomInputField
+						label={'Email'}
+						touched={formik.touched.email}
+						error={formik.errors.email}
+						{...formik.getFieldProps('email')}
+					/>
+					<CustomInputField
+						label={'Password'}
+						touched={formik.touched.password}
+						error={formik.errors.password}
+						{...formik.getFieldProps('password')}
+					/>
+					<CaptchaField/>
+					<div className={s.captchaInput}>
 						<CustomInputField
-							label={'Email'}
-							touched={formik.touched.email}
-							error={formik.errors.email}
-							{...formik.getFieldProps('email')}
+							label={'Type the symbols above'}
+							touched={formik.touched.captcha}
+							error={formik.errors.captcha}
+							{...formik.getFieldProps('captcha')}
 						/>
-						<CustomInputField
-							label={'Password'}
-							touched={formik.touched.password}
-							error={formik.errors.password}
-							{...formik.getFieldProps('password')}
-						/>
-						<CaptchaField/>
-						<div className={s.captchaInput}>
-							<CustomInputField
-								label={'Type the symbols above'}
-								touched={formik.touched.captcha}
-								error={formik.errors.captcha}
-								{...formik.getFieldProps('captcha')}
-							/>
-						</div>
+					</div>
 
+				</div>
+				<div className={s.loginFooter}>
+					<button
+						type={'submit'}
+						className={s.completeSignupButton}
+						disabled={isLoading}
+					>Login
+					</button>
+					<div className={s.loginFooterRedirect}>
+						<p>Don't have an account?
+							<Link to={PATH.SIGN_UP}> Sign up</Link>
+						</p>
 					</div>
-					<div className={s.loginFooter}>
-						<button
-							type={'submit'}
-							className={s.completeSignupButton}
-							disabled={isLoading}
-						>Login
-						</button>
-						<div className={s.loginFooterRedirect}>
-							<p>Don't have an account?
-								<Link to={PATH.SIGN_UP}> Sign up</Link>
-							</p>
-						</div>
-					</div>
-				</form>
-			</div>
+				</div>
+			</form>
+		</div>
 
 	)
 		;

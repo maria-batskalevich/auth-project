@@ -3,15 +3,8 @@
 
 
 .loginWrapper {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin: 39px 22px 33px;
-	font-family: 'Work Sans', sans-serif;
+	@extend %authWrapper;
 	width: 485px;
-	padding-top: 30px;
-	background-color: $mainAuthBGColor;
 
 	.loginHeader {
 		display: flex;
@@ -19,7 +12,7 @@
 		align-items: center;
 
 		h3 {
-			margin-bottom: 50px;
+			margin-bottom: 20px;
 			margin-top: 10px;
 			text-align: center;
 		}
@@ -32,7 +25,6 @@
 			padding-bottom: 50px;
 		}
 	}
-
 	.loginFooter {
 		display: flex;
 		flex-direction: column;
@@ -52,5 +44,17 @@
 			font-weight: 200;
 			margin-top: 20px;
 		}
+	}
+}
+
+@media (max-width: 660px) {
+	.loginWrapper {
+		width: 300px;
+	}
+}
+
+@media (max-width: 420px) {
+	.loginWrapper {
+		width: 200px;
 	}
 }

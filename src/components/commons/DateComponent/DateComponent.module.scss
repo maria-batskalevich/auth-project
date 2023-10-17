@@ -1,23 +1,39 @@
 @import "../../../sass/abstracts/definitions";
+@import "/src/sass/components/auth";
 
-.selectDataWrapper {
-	display: flex;
-	justify-content: space-between;
-	width: 235px;
 
-	select {
-		border: none;
-		border-bottom: $labelTextColor 1px solid;
-		height: 23px;
+.dateComponentWrapper {
+	label {
+		@extend %wrappersLabel;
+	}
 
-		&:nth-child(1) {
-			width: 56px;
+	.selectDataWrapper {
+		display: flex;
+		justify-content: space-between;
+		width: 235px;
+
+		select {
+			border: none;
+			border-bottom: $labelTextColor 1px solid;
+			height: 23px;
+
+			&:nth-child(1) {
+				width: 56px;
+			}
+
+			&:nth-child(2) {
+				width: 91px;
+			}
+
+			&:nth-child(3) {
+				width: 68px;
+			}
 		}
-		&:nth-child(2) {
-			width: 91px;
-		}
-		&:nth-child(3) {
-			width: 68px;
-		}
+	}
+}
+
+@media (max-width: 660px) {
+	.dateComponentWrapper{
+		width: 200px;
 	}
 }

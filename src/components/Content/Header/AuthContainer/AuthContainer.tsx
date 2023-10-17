@@ -3,7 +3,7 @@ import s from './AuthContainer.module.scss'
 import userAvatar from '../../../../assets/images/usersAvatar.png'
 import {NavLink} from 'react-router-dom'
 import {useDispatch, useSelector} from "react-redux";
-import {LogoutTC} from "../../../../bll/auth.reducer";
+import {logoutTC} from "../../../../bll/auth.reducer";
 import {getEmail, getIsAuth, getLargeAvatar} from "../../../../bll/auth.selector";
 
 export const AuthContainer = () => {
@@ -14,7 +14,7 @@ export const AuthContainer = () => {
 	const dispatch = useDispatch()
 	const onClickHandler = () => {
 		// @ts-ignore
-		dispatch(LogoutTC())
+		dispatch(logoutTC())
 	}
 
 	return (

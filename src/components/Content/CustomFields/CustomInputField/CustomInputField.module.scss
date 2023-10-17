@@ -1,19 +1,10 @@
 @import '../../../../sass/abstracts/definitions';
+@import "../../../../sass/components/auth";
 
-.fieldWrapper{
-	input {
-		width: $inputWidth;
-		border: none;
-		border-bottom: 1px solid $mainDarkBGColor;
-		outline: none;
-		font-size: $mainInputTextSize;
-		font-weight: 500;
-		margin-bottom: 25px;
-	}
+.fieldWrapper {
+	@extend %inputFieldPlaceholder;
 
-	div {
-		//color: red;
-		//font-size: 11px;
-		//position: absolute;
+	.error {
+		@extend %authErrors;
 	}
 }

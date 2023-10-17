@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navigate, Routes, Route} from 'react-router-dom'
+import {Navigate, Routes, Route, useNavigate} from 'react-router-dom'
 import {SignUp} from "./SignUp/SignUp";
 import {useSelector} from "react-redux";
 import {getIsAuth} from "../../bll/auth.selector";

@@ -1,5 +1,6 @@
 import React, {DetailedHTMLProps, InputHTMLAttributes} from 'react';
-import s from '../../SignUp/SignUp.module.scss'
+import s from './CustomInputField.module.scss'
+// import s from '../../SignUp/SignUp.module.scss'
 import {v1} from "uuid";
 
 
@@ -18,6 +19,7 @@ export const CustomInputField = (props: FormikInputFieldProps) => {
 	// debugger
 
 	return (
+		// <div className={s.fieldWrapper}>
 		<div className={rootClassName} style={style}>
 			{label && <label htmlFor={id}>{label}</label>}
 			<input id={id} {...inputProps}/>

@@ -1,9 +1,28 @@
 @import "../../sass/abstracts/definitions";
 
+%authWrapper {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 20px 22px 36px;
+	font-family: 'Work Sans', sans-serif;
+	padding-top: 30px;
+	background-color: $mainAuthBGColor;
+}
+
 %rowFieldPlaceholder {
 	display: flex;
 	justify-content: space-between;
 	margin-bottom: 25px;
+}
+
+%wrappersLabel {
+	display: block;
+	font-size: 12px;
+	color: $labelTextColor;
+	margin-bottom: 5px;
+	padding-top: 20px;
 }
 
 %buttonFieldPlaceholder {
@@ -27,8 +46,18 @@
 	}
 
 	label {
-		padding-top: 7px;
+		display: block;
+		font-size: 12px;
+		color: $labelTextColor;
+		margin-bottom: 5px;
+		padding-top: 15px;
 	}
+}
+
+%authErrors{
+	color: red;
+	font-size: 11px;
+	position: absolute;
 }
 
 %buttonDisabledPlaceholder {

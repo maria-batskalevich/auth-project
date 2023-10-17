@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "../SignUp/SignUp.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {LogoutTC} from "../../../bll/auth.reducer";
+import {logoutTC} from "../../../bll/auth.reducer";
 import {getIsAuth} from "../../../bll/auth.selector";
 import {Navigate} from "react-router-dom";
 import {PATH} from "../Content";
@@ -11,7 +11,7 @@ export const Logout = () => {
 	const isAuth = useSelector(getIsAuth)
 	const onClickHandler = () => {
 		// @ts-ignore
-		dispatch(LogoutTC())
+		dispatch(logoutTC())
 	}
 
 	if (!isAuth) {

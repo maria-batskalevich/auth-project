@@ -11,6 +11,7 @@ import {CustomInputField} from "../CustomFields/CustomInputField/CustomInputFiel
 import {CustomSelectField} from "../CustomFields/CustomSelectField/CustomSelectField";
 import {Link} from "react-router-dom";
 import {PATH} from "../Content";
+import { useNavigate } from 'react-router-dom';
 
 
 export type formikValuesType = {
@@ -40,6 +41,7 @@ export const SignUp = () => {
 	const dispatch = useAppDispatch()
 	const isNationalityInit = useSelector(getIsNationalityInit)
 	const nationalities = useSelector(getNationalities)
+	const navigate = useNavigate()
 
 	const formik = useFormik({
 		initialValues,
@@ -72,8 +74,10 @@ export const SignUp = () => {
 				return errors
 		},
 		onSubmit: (values: formikValuesType) => {
+			console.log(123)
 			alert(JSON.stringify(values))
-				console.log(123456789)
+			console.log(12345)
+			// navigate('/login')
 		}
 	})
 
@@ -97,7 +101,6 @@ export const SignUp = () => {
 			</div>
 			<form className={s.formWrapper} onSubmit={formik.handleSubmit}>
 				<div className={s.row}>
-
 					<CustomInputField
 						label='First Name'
 						error={formik.errors.firstName}

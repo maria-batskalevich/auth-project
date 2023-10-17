@@ -146,7 +146,9 @@ export const loginTC = (data: LoginParamsType): any => async (dispatch: ThunkDis
 	try {
 		await authAPI.login(data)
 			.then((res) => {
+				// debugger
 				if (res.data.resultCode === 0) {
+					// debugger
 					dispatch(setLoginData(res.data.data.userId, data.email, ''))
 					dispatch(setIsAuth(true))
 					console.log(res.data.data.userId)
@@ -162,7 +164,7 @@ export const loginTC = (data: LoginParamsType): any => async (dispatch: ThunkDis
 }
 
 
-export const LogoutTC = () => async (dispatch: ThunkDispatchType) => {
+export const logoutTC = () => async (dispatch: ThunkDispatchType) => {
 	try {
 		await authAPI.logout()
 			.then(res => {
