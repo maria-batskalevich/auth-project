@@ -93,6 +93,7 @@ export const SignUp = () => {
 
 	const selectPlaceholder = isNationalityInit ? 'Set your nationality' : 'Loading...'
 
+
 	return (
 		<div className={s.signUpWrapper}>
 			<div className={s.textWrapper}>
