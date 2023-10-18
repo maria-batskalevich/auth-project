@@ -3,10 +3,9 @@ import s from './Login.module.scss'
 import {CustomInputField} from "../CustomFields/CustomInputField/CustomInputField";
 import {Link} from "react-router-dom";
 import {PATH} from "../Content";
-import {getAuthUserData, getCaptchaUrlTC, loginTC} from "../../../bll/auth.reducer";
+import {getCaptchaUrlTC, loginTC} from "../../../bll/auth.reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {getIsAuth} from "../../../bll/auth.selector";
-import {Navigate} from "react-router-dom";
 import {useFormik} from "formik";
 import {LoginParamsType} from "../../../dal/auth-api";
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,11 +17,8 @@ export const Login = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	useEffect(() => {
-		// debugger
-		// @ts-ignore
-		dispatch(getAuthUserData())
-		dispatch(getCaptchaUrlTC())
-	}, [dispatch])
+		!isAuth && dispatch(getCaptchaUrlTC())
+	}, [isAuth, dispatch])
 
 	const formik = useFormik({
 		initialValues: {
@@ -52,16 +48,14 @@ export const Login = () => {
 		},
 		onSubmit: values => {
 			setIsLoading(true);
-			// debugger
 			dispatch(loginTC(values));
-			// debugger
 			setIsLoading(false);
 		}
 	})
 
-	if (isAuth) {
-		return <Navigate to={'/profile'}/>
-	}
+	// if (isAuth) {
+	// 	return <Navigate to={'/profile'}/>
+	// }
 
 	return (
 		<div className={s.loginWrapper}>

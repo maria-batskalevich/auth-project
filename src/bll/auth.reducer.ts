@@ -3,8 +3,7 @@ import {HttpApi} from "../dal/http.api";
 import axios from 'axios'
 import {authAPI, LoginParamsType} from "../dal/auth-api";
 import {handleServerAppError, handleServerNetworkError} from "../utills/error-utils";
-import {profileAPI} from "../dal/profile-api";
-import {ProfilePageTypes} from "./profile.reducer";
+import {setAppInitialized} from "./app.reducer";
 
 
 type AuthStateType = {
@@ -35,7 +34,6 @@ enum AuthActions {
 	SET_APP_ERROR = 'SET_APP_ERROR',
 	SET_CAPTCHA_URL = 'SET_CAPTCHA_URL',
 	SET_LOGIN_DATA = 'SET_LOGIN_DATA',
-	SET_MY_DATA = 'SET_MY_DATA'
 }
 
 export type AuthActionsType = ReturnType<typeof setIsAuth>
@@ -44,7 +42,6 @@ export type AuthActionsType = ReturnType<typeof setIsAuth>
 	| ReturnType<typeof setAppError>
 	| ReturnType<typeof setCaptchaUrl>
 	| ReturnType<typeof setLoginData>
-	| ReturnType<typeof setMyData>
 
 export const authReducer = (state: AuthStateType = authInitState, action: AuthActionsType): AuthStateType => {
 	switch (action.type) {
@@ -54,14 +51,13 @@ export const authReducer = (state: AuthStateType = authInitState, action: AuthAc
 		case AuthActions.SET_APP_ERROR:
 		case AuthActions.SET_CAPTCHA_URL:
 		case AuthActions.SET_LOGIN_DATA:
-		case AuthActions.SET_MY_DATA:
 			return {...state, ...action.payload}
 		default:
 			return state
 	}
 }
 
-const setIsAuth = (isAuth: boolean) => {
+export const setIsAuth = (isAuth: boolean) => {
 	return {
 		type: AuthActions.SET_IS_AUTH,
 		payload: {isAuth}
@@ -70,10 +66,6 @@ const setIsAuth = (isAuth: boolean) => {
 
 export const setLoginData = (id: number, email: string | undefined, login: string) => {
 	return {type: AuthActions.SET_LOGIN_DATA, payload: {id, email, login}} as const
-}
-
-export const setMyData = (data: ProfilePageTypes) => {
-	return {type: AuthActions.SET_MY_DATA, payload: data} as const
 }
 
 const setIsNationalityInit = (isNationalityInit: boolean) => {
@@ -98,60 +90,30 @@ const setCaptchaUrl = (captchaUrl: string | undefined) => ({
 } as const)
 
 
-// export const loginTC = (data: LoginParamsType): any => async (dispatch: ThunkDispatchType) => {
-// 	try {
-// 		const res = await authAPI.login(data)
-// 		if (res.data.resultCode === 0) {
-// 			// @ts-ignore
-// 			dispatch(setLoginData(res.data.data.userId, email, ''))
-// 			dispatch(setIsAuth(true))
-// 			console.log(res.data.data.userId)
-// 		} else if (res.data.resultCode === 10) {
-// 			dispatch(GetCaptchaUrlTC())
-// 		} else {
-// 			handleServerAppError(res.data, dispatch)
-// 		}
-// 	} catch (error: any) {
-// 		// handleServerNetworkError(error.data, dispatch)
-// 	}
-// }
-
 //Thunks
 export const getAuthUserData = (): RootThunkType => async (dispatch: any) => {
-	// debugger
 	try {
 		const authData = await authAPI.authMe()
-		// debugger
 		if (authData.resultCode === 0) {
-			// debugger
+			dispatch(setIsAuth(true))
 			const {id, email, login} = authData.data
 			dispatch(setLoginData(id, email, login))
-			const myProfile = await profileAPI.getProfile(authData.data.id)
-			dispatch(setMyData(myProfile))
-			dispatch(setIsAuth(true))
+			dispatch(setAppInitialized(true))
 		} else {
-
-			console.log('some error(((')
 			handleServerAppError(authData, dispatch)
 		}
 	} catch (error: any) {
 		handleServerNetworkError(error.data, dispatch)
 	}
-
-
 }
-
 
 export const loginTC = (data: LoginParamsType): any => async (dispatch: ThunkDispatchType) => {
 	try {
 		await authAPI.login(data)
 			.then((res) => {
-				// debugger
 				if (res.data.resultCode === 0) {
-					// debugger
 					dispatch(setLoginData(res.data.data.userId, data.email, ''))
 					dispatch(setIsAuth(true))
-					console.log(res.data.data.userId)
 				} else if (res.data.resultCode === 10) {
 					dispatch(getCaptchaUrlTC())
 				} else {
@@ -162,7 +124,6 @@ export const loginTC = (data: LoginParamsType): any => async (dispatch: ThunkDis
 		handleServerNetworkError(error.data, dispatch)
 	}
 }
-
 
 export const logoutTC = () => async (dispatch: ThunkDispatchType) => {
 	try {
@@ -192,7 +153,6 @@ export const getAllNationalitiesTC = () => async (dispatch: ThunkDispatchType) =
 			.map(n => n.demonyms.eng.m)
 			.filter(n => n)
 			.sort()
-		// .uniq();
 		const uniqueNationalities = [...new Set(nationalities)];
 
 		dispatch(setNationalities(uniqueNationalities))

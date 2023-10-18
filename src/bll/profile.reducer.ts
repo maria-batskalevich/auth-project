@@ -1,5 +1,7 @@
 import {ThunkDispatchType} from "../utills/hooks";
 import {profileAPI} from "../dal/profile-api";
+import {RootStateType} from "./store";
+import {getUserId} from "./auth.selector";
 
 export type ProfilePageTypes = {
 	userId: number | null
@@ -59,11 +61,15 @@ export const setProfile = (data: ProfilePageTypes) => ({
 	type: profileActions.SET_PROFILE, payload: {data}
 } as const)
 
-export const getProfileTC = (userID: number) => async (dispatch: ThunkDispatchType) => {
+export const getProfileTC = (userID?: number) => async (dispatch: ThunkDispatchType, getState: () => RootStateType) => {
+
+	const myId = getUserId(getState());
+	if (!myId) return;
+
 	try {
-		const profile = await profileAPI.getProfile(userID)
-		console.log(profile)
+		const profile = await profileAPI.getProfile(userID || myId)
 		dispatch(setProfile(profile))
+
 	} catch (e) {
 		console.log(e)
 	}

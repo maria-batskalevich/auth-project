@@ -23,13 +23,12 @@
 	.sideBarWrapper {
 		font-size: 46px;
 		width: 30%;
-		height: 100vh;
+		height: auto;
 	}
 }
 @media (max-width: 420px) {
 	.sideBarWrapper {
 		font-size: 35px;
 		width: 150px;
-		height: 100vh;
 	}
 }

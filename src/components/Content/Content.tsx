@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navigate, Routes, Route, useNavigate} from 'react-router-dom'
+import {Navigate, Routes, Route} from 'react-router-dom'
 import {SignUp} from "./SignUp/SignUp";
 import {useSelector} from "react-redux";
 import {getIsAuth} from "../../bll/auth.selector";
@@ -26,6 +26,7 @@ export const Content = () => {
 			<Routes>
 				<Route path={PATH.ROOT} element={isAuth ? <Profile/> : <Navigate to={PATH.LOGIN}/>}/>
 				<Route path={PATH.PROFILE} element={isAuth ? <Profile/> : <Navigate to={PATH.LOGIN}/>}/>
+				<Route path={`${PATH.PROFILE}/:id`} element={isAuth ? <Profile/> : <Navigate to={PATH.LOGIN}/>}/>
 				<Route path={PATH.LOGIN} element={!isAuth ? <Login/> : <Navigate to={PATH.PROFILE}/>}/>
 				<Route path={PATH.SIGN_UP} element={!isAuth ? <SignUp/> : <Navigate to={PATH.PROFILE}/>}/>
 				<Route path={PATH.ERROR} element={!isAuth ? <Navigate to={PATH.LOGIN}/> : <Navigate to={PATH.PROFILE}/>}/>

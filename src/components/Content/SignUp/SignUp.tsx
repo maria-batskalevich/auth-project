@@ -74,10 +74,8 @@ export const SignUp = () => {
 				return errors
 		},
 		onSubmit: (values: formikValuesType) => {
-			console.log(123)
 			alert(JSON.stringify(values))
-			console.log(12345)
-			// navigate('/login')
+			navigate('/login')
 		}
 	})
 
@@ -87,9 +85,9 @@ export const SignUp = () => {
 
 	useEffect(() => {
 		if (!isNationalityInit) {
-			const pr = dispatch(getAllNationalitiesTC())
+			dispatch(getAllNationalitiesTC()).then()
 		}
-	}, [])
+	}, [isNationalityInit, dispatch])
 
 	const selectPlaceholder = isNationalityInit ? 'Set your nationality' : 'Loading...'
 
@@ -118,6 +116,7 @@ export const SignUp = () => {
 				<div className={s.row}>
 					<div className={s.nationalityWrapper}>
 						<CustomSelectField
+							required={true}
 							className={s.selectNationality}
 							label='Nationality'
 							disabled={!isNationalityInit}

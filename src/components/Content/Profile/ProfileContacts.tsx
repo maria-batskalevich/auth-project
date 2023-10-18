@@ -4,7 +4,9 @@ import {useSelector} from "react-redux";
 import {getContacts} from "../../../bll/auth.selector";
 
 export const ProfileContacts = () => {
+
 	const contacts = useSelector(getContacts)
+
 	return (
 		<div className={s.userWrapper}>
 			<h4 className={s.boxHeading}>Contacts & Socials</h4>
