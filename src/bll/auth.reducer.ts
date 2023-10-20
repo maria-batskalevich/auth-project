@@ -94,11 +94,11 @@ const setCaptchaUrl = (captchaUrl: string | undefined) => ({
 export const getAuthUserData = (): RootThunkType => async (dispatch: any) => {
 	try {
 		const authData = await authAPI.authMe()
+		dispatch(setAppInitialized(true))
 		if (authData.resultCode === 0) {
 			dispatch(setIsAuth(true))
 			const {id, email, login} = authData.data
 			dispatch(setLoginData(id, email, login))
-			dispatch(setAppInitialized(true))
 		} else {
 			handleServerAppError(authData, dispatch)
 		}
