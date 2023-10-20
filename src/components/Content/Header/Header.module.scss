@@ -14,7 +14,15 @@
 	color: $whiteTextColor;
 
 	p {
-	font-size: $mainHeaderTextSize;
+		font-size: $mainHeaderTextSize;
 	}
 }
 
+@media (max-width: 500px) {
+	.header {
+		padding: 0 15px;
+		p {
+			font-size: 14px;
+		}
+	}
+}

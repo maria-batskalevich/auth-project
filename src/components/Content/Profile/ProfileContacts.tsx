@@ -1,11 +1,12 @@
 import React from 'react';
 import s from "./Profile.module.scss";
-import {useSelector} from "react-redux";
-import {getContacts} from "../../../bll/auth.selector";
+
+export const contacts = {
+	github: 'https://github.com/maria-batskalevich',
+	linkedIn: 'https://www.linkedin.com/in/maria-batskalevich-18b289230/'
+}
 
 export const ProfileContacts = () => {
-
-	const contacts = useSelector(getContacts)
 
 	return (
 		<div className={s.userWrapper}>

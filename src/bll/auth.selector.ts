@@ -16,4 +16,5 @@ export const getUsersDescription = (state: RootStateType): string => state.profi
 export const getFullName = (state: RootStateType): string | undefined => state.profilePage.fullName
 export const getSmallAvatar = (state: RootStateType): string | undefined => state.profilePage.photos.small
 export const getLargeAvatar = (state: RootStateType): string | undefined => state.profilePage.photos.large
+export const getIsFetching = (state: RootStateType): boolean => state.profilePage.isFetching
 export const getProfile = (state: RootStateType): ProfilePageTypes => state.profilePage

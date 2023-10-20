@@ -17,7 +17,7 @@ export const ProfileInfo = ({fullName}: PropsType) => {
 			<h4 className={s.boxHeading}>General Info</h4>
 			<p className={s.descWrapper}>
 				<span className={s.desc}>Looking for a job: </span>
-				<span className={s.descRes}>{lookingForAJob ? 'Yes, I am)))' : 'Nope'}</span>
+				<span className={s.descRes}>{lookingForAJob ? 'Nope' : 'Yes, I am)))'}</span>
 			</p>
 			<p className={s.descWrapper}>
 				<span className={s.desc}>Description: </span>

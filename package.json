@@ -1,5 +1,6 @@
 {
   "name": "auth-project",
+	"homepage": "https://maria-batskalevich.github.io/auth-project/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,8 +21,9 @@
     "@types/sass": "^1.45.0",
     "@types/uuid": "^9.0.2",
     "axios": "^1.4.0",
+    "deploy-gh-pages": "^1.0.0",
     "formik": "^2.4.2",
-    "gh-pages": "^5.0.0",
+    "gh-pages": "^6.0.0",
     "notistack": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -40,7 +42,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

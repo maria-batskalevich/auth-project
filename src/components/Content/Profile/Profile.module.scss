@@ -91,11 +91,31 @@ h4::before {
 	width: 3px;
 	height: 15px;
 	left: 0;
-	top: 10%;
+	top: 20%;
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
 }
 
-.preloader {
-background-color: red;
+@media (max-width: 1170px) {
+	.contentCenter{
+		padding: 120px 50px 0;
+	}
+}
+@media (max-width: 860px) {
+	.contentCenter{
+		padding: 120px 20px 0;
+	}
+}
+@media (max-width: 800px) {
+	.contentCenter{
+		padding: 120px 20px 0;
+		.profileWrapper{
+			flex-direction: column;
+			align-items: center;
+			.userWrapper{
+				width: 90%;
+			}
+		}
+	}
+
 }

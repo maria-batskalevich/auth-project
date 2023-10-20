@@ -8,7 +8,6 @@
 		width: 50px;
 		height: 50px;
 		border-radius: 50%;
-		//overflow: hidden;
 		margin-right: 15px;
 		border: 1px solid $whiteTextColor;
 
@@ -37,6 +36,15 @@
 		.logout:hover {
 			color: black;
 			background-color: rgba(255, 255, 255, .5);
+		}
+	}
+}
+@media (max-width: 500px) {
+	.authWrapper{
+		.buttonWrapper{
+			.logout{
+				width: 100px;
+			}
 		}
 	}
 }

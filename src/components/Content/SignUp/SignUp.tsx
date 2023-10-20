@@ -63,7 +63,7 @@ export const SignUp = () => {
 				}
 				if (!values.password) {
 					errors.password = 'Required'
-				} else if (values.password.length < 3) {
+				} else if (values.password.length < 3 ) {
 					errors.password = 'Password length should be more than 3 symbols'
 				}
 				if (!values.confirmPassword) {
@@ -171,7 +171,6 @@ export const SignUp = () => {
 						label='Confirm password'
 						error={formik.errors.confirmPassword}
 						touched={formik.touched.confirmPassword}
-
 						{...formik.getFieldProps('confirmPassword')}
 					/>
 				</div>

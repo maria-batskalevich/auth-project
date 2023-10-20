@@ -2,6 +2,7 @@ import {ThunkDispatchType} from "../utills/hooks";
 import {profileAPI} from "../dal/profile-api";
 import {RootStateType} from "./store";
 import {getUserId} from "./auth.selector";
+import {handleServerNetworkError} from "../utills/error-utils";
 
 export type ProfilePageTypes = {
 	userId: number | null
@@ -42,16 +43,19 @@ const initialState: ProfilePageTypes = {
 }
 
 enum profileActions {
-	SET_PROFILE = 'SET_PROFILE'
+	SET_PROFILE = 'SET_PROFILE',
+	SET_IS_FETCHING = 'SET_IS_FETCHING'
 }
 
-export type ProfileActionsType = ReturnType<typeof setProfile>
+export type ProfileActionsType = ReturnType<typeof setProfile> | ReturnType<typeof setIsFetching>
 
 
 export const profileReducer = (state: ProfilePageTypes = initialState, action: ProfileActionsType): ProfilePageTypes => {
 	switch (action.type) {
 		case profileActions.SET_PROFILE:
 			return {...state, ...action.payload.data}
+		case profileActions.SET_IS_FETCHING:
+			return {...state, ...action.payload}
 		default:
 			return state
 	}
@@ -60,6 +64,10 @@ export const profileReducer = (state: ProfilePageTypes = initialState, action: P
 export const setProfile = (data: ProfilePageTypes) => ({
 	type: profileActions.SET_PROFILE, payload: {data}
 } as const)
+export const setIsFetching = (isFetching: boolean) => ({
+	type: profileActions.SET_IS_FETCHING, payload: {isFetching}
+} as const)
+
 
 export const getProfileTC = (userID?: number) => async (dispatch: ThunkDispatchType, getState: () => RootStateType) => {
 
@@ -69,8 +77,9 @@ export const getProfileTC = (userID?: number) => async (dispatch: ThunkDispatchT
 	try {
 		const profile = await profileAPI.getProfile(userID || myId)
 		dispatch(setProfile(profile))
+		dispatch(setIsFetching(true))
 
-	} catch (e) {
-		console.log(e)
+	} catch (error: any) {
+		handleServerNetworkError(error, dispatch)
 	}
 }
